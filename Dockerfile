@@ -1,10 +1,10 @@
-FROM java:8
-
-RUN mkdir -p /output
+FROM adoptopenjdk/openjdk8:alpine-slim
 
 ADD http://nilhcem.github.com/FakeSMTP/downloads/fakeSMTP-latest.zip /fakeSMTP-latest.zip
 
-RUN unzip /fakeSMTP-latest.zip
+RUN apk --update --no-cache add unzip \
+    && mkdir -p /output \
+    && unzip /fakeSMTP-latest.zip
 
 VOLUME /output
 
